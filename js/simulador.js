@@ -11,11 +11,13 @@ const colors = [
     '#FFFFFF'
 ];
 
-const imageData = new Array(HEIGHT).fill().map(() =>
-    new Array(WIDTH).fill().map(() => Math.floor(Math.random()*16))
-);
 
 
+function generateImageData(){
+    return new Array(HEIGHT).fill().map(() =>
+        new Array(WIDTH).fill().map(() => Math.floor(Math.Random() * 16))
+    );
+}
 
 function drawImagePattern() {
     for (let y = 0; y < HEIGHT; y++) {
@@ -25,6 +27,12 @@ function drawImagePattern() {
             ctx.fillRect(x, y, 1, 1);
         }
     }
+}
+
+function animate(){
+    const imageData = generateImageData();
+    drawImagePattern(imageData);
+    requestAnimationFrame(animate);
 }
 
 drawImagePattern();
